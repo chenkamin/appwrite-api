@@ -1,0 +1,6 @@
+{
+    "require": {
+        "utopia-php/framework": "^0.9.8",
+        "utopia-php/swoole": "^0.2.0"
+    }
+}
