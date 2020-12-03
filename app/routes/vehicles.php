@@ -23,6 +23,7 @@ App::get(BASE_URL .'/vehicles')
     }, ['request', 'response']);
 
   
+
 App::post(BASE_URL . '/vehicles')
     ->desc('Create a new vehicle')
     ->action(function ($request,$response) {
@@ -43,7 +44,7 @@ App::post(BASE_URL . '/vehicles')
         	->setStatusCode(Response::STATUS_CODE_CREATED)
         	->json([
 						"status" => "success",
-						"data" => ["vehicle" =>$newVehicles]
+						"data" => ["vehicle" =>$newCar]
           ]);
     }, ['request','response']);
 
@@ -53,8 +54,12 @@ App::put(BASE_URL . '/vehicles')
 			$id = $request->getQuery("id");	
 			$vehicles =	getVehicleById($id);
 			$updatedVehicle = $vehicles;
-			$response->json($updatedVehicle);
-    }, ['request', 'response']);
+			$response
+			->setStatusCode(Response::STATUS_CODE_OK)
+			->json([
+				"status" => "success",
+				"data" => ["vehicles" =>$updatedVehicle]]);       
+		}, ['request', 'response']);
 
 App::delete(BASE_URL . '/vehicles')
     ->desc('Delete a vehicle')
